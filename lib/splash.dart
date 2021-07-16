@@ -1,11 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:mymemo/view/Home/home-controller.dart';
+import 'package:mymemo/constants/const.dart';
 import 'package:mymemo/view/Home/view-home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
-
 import 'model/person-model.dart';
 
 class splash extends StatefulWidget {
@@ -14,7 +11,7 @@ class splash extends StatefulWidget {
 }
 
 class _splashState extends State<splash> {
-  int d = 4000;
+  int duration =6500;
   List<Person> list = [];
   SharedPreferences prefs;
   bool b;
@@ -42,34 +39,31 @@ class _splashState extends State<splash> {
     }
   }
 
-  @override
-  initState() {
+ @override
+  void initState() {
+    super.initState();
     fun();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Splash screen Demo',
-      home: SplashScreenView(
+    return Scaffold(
+      body: SplashScreenView(
         home: PersonPage(
           check: b,
         ),
-        duration: d,
+        duration: duration,
         imageSize: 130,
-        imageSrc: "assets/book.png",
+        imageSrc: "assets/images/splash.gif",
         text: "Memo App",
         textType: TextType.ColorizeAnimationText,
-        textStyle: TextStyle(
-          fontSize: 40.0,
-        ),
+        textStyle: customTextStyle,
         colors: [
-          Colors.purple,
-          Colors.blue,
-          Colors.yellow,
-          Colors.red,
+          kPrimaryColor,
+          Colors.white,
+          kPrimaryColor.withOpacity(0.5),
         ],
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFf3f3f3),
       ),
     );
   }

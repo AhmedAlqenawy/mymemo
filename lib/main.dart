@@ -1,7 +1,7 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil_init.dart';
 import 'package:mymemo/splash.dart';
- import 'package:mymemo/view/Home/view-home.dart';
+import 'package:mymemo/view/Home/view-home.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 /*
@@ -204,12 +204,13 @@ class MyApp extends StatelessWidget {
       designSize: Size(411, 877),
       allowFontScaling: true,
       builder: () => ShowCaseWidget(
-          builder: Builder(
-              builder : (_) => MaterialApp(
-              title: 'My Memory',
-              home: splash()
+        builder: Builder(
+          builder: (_) => MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'My Memory',
+            home: splash(),
           ),
-      ),
+        ),
       ),
     );
   }
