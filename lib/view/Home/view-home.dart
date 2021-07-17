@@ -98,19 +98,28 @@ class PersonPage extends StatelessWidget {
                           print(
                               formatDate(birthdate, [yyyy, '-', mm, '-', dd]));
                           if (friendName != "") {
-                            await PersonProvider().addPerson(Person(
+                            await PersonProvider().addPerson(
+                              Person(
+                                  notify: 1,
+                                  name: friendName,
+                                  birthDate: formatDate(
+                                    birthdate,
+                                    [yyyy, '-', mm, '-', dd],
+                                  ),
+                                  memoNum: 0),
+                            );
+                            await BirthdayNotification()
+                                .ScheduledBirthDateNotification(
+                              Person(
                                 notify: 1,
                                 name: friendName,
                                 birthDate: formatDate(
-                                    birthdate, [yyyy, '-', mm, '-', dd],),
-                                memoNum: 0),);
-                            await BirthdayNotification()
-                                .ScheduledBirthDateNotification(Person(
-                                    notify: 1,
-                                    name: friendName,
-                                    birthDate: formatDate(
-                                        birthdate, [yyyy, '-', mm, '-', dd],),
-                                    memoNum: 0,),);
+                                  birthdate,
+                                  [yyyy, '-', mm, '-', dd],
+                                ),
+                                memoNum: 0,
+                              ),
+                            );
                           } else {
                             failToast(context, "Empty field !");
                             // Navigator.of(context).pop();
@@ -139,8 +148,9 @@ class PersonPage extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       child: ListBody(
                         children: <Widget>[
-                          Text('My Friend\'s Name',
-                          style: customTextStyle.copyWith(
+                          Text(
+                            'My Friend\'s Name',
+                            style: customTextStyle.copyWith(
                               color: Colors.black,
                               fontSize: 17.ssp,
                             ),
@@ -149,8 +159,10 @@ class PersonPage extends StatelessWidget {
                             style: GoogleFonts.almarai(),
                             cursorColor: kPrimaryColor,
                             decoration: InputDecoration(
-                            hintStyle: GoogleFonts.elMessiri(),
-                              contentPadding: EdgeInsets.all(10,),
+                              hintStyle: GoogleFonts.amiri(),
+                              contentPadding: EdgeInsets.all(
+                                10,
+                              ),
                               border: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Colors.black26,
@@ -186,7 +198,8 @@ class PersonPage extends StatelessWidget {
                           SizedBox(
                             height: 20.h,
                           ),
-                          Text('My Friend\'s Birthday',
+                          Text(
+                            'My Friend\'s Birthday',
                             style: customTextStyle.copyWith(
                               color: Colors.black,
                               fontSize: 17.ssp,
@@ -227,7 +240,10 @@ class PersonPage extends StatelessWidget {
         ),
         body: SafeArea(
           child: Selector<PersonProvider, List>(
-            selector: (context, getFriends,) {
+            selector: (
+              context,
+              getFriends,
+            ) {
               getFriends.fetchPersonList();
               return getFriends.getPersonList;
             },
@@ -248,24 +264,16 @@ class PersonPage extends StatelessWidget {
                         )
                       : ListView.builder(
                           itemCount: friendList.length,
-                          itemBuilder: (context, index,) {
+                          itemBuilder: (
+                            context,
+                            index,
+                          ) {
                             if (this.check == true)
-                              PersonProvider()
-                                  .checkAllPersonsbirthDay(friendList,);
-                            return InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Memopage(
-                                      friendList[index],
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: FriendComponent(
-                                friend: friendList[index],
-                              ),
+                              PersonProvider().checkAllPersonsbirthDay(
+                                friendList,
+                              );
+                            return FriendComponent(
+                              friend: friendList[index],
                             );
                           },
                         );

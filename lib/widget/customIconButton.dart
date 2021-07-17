@@ -8,8 +8,8 @@ class CustomIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(5),
-      margin: EdgeInsets.symmetric(horizontal: 10.w,),
+      padding: EdgeInsets.all(4),
+      margin: EdgeInsets.symmetric(horizontal: 10.w,vertical: 2.h,),
       decoration: BoxDecoration(
           color: kPrimaryColor,
           shape: BoxShape.circle,

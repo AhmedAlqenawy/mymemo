@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mymemo/constants/const.dart';
+import 'package:mymemo/view/memo-page/view-memo.dart';
 import 'package:mymemo/widget/customIconButton.dart';
 
 class FriendComponent extends StatelessWidget {
@@ -13,7 +14,16 @@ class FriendComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     DateTime birth = DateTime.parse(friend.birthDate);
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MemoPage(
+              friend,
+            ),
+          ),
+        );
+      },
       child: Container(
         height: 0.1.sh,
         margin: EdgeInsets.symmetric(
@@ -26,7 +36,7 @@ class FriendComponent extends StatelessWidget {
             Container(
               width: 1.sw,
               height: 0.1.sh,
-              margin: EdgeInsets.only(left: 0.08.sw),
+              margin: EdgeInsets.only(left: 0.08.sw,),
               decoration: BoxDecoration(
                 color: kPrimaryColor,
                 borderRadius: BorderRadius.circular(
